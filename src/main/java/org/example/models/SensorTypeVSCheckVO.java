@@ -1,8 +1,7 @@
-package org.example.vo;
+package org.example.models;
 
 
 import lombok.Data;
-
 
 import java.io.Serializable;
 

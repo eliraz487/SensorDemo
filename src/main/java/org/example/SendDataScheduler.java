@@ -1,24 +1,28 @@
 package org.example;
 
-import java.util.ArrayList;
+import org.example.models.SensorVO;
+
+
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class HelloWorldScheduler {
+public class SendDataScheduler {
     private Timer timer;
+    private  static final double minute=0.1;
 
-    public HelloWorldScheduler() {
-        timer = new Timer();
+    private SensorVO sensorVO;
+
+    public SendDataScheduler( SensorVO sensorVO) {
+        this.timer = new Timer();
+        this.sensorVO = sensorVO;
     }
 
-    public void startPrinting() {
-        TimerTask task = new HelloWorldTask();
-
-        // Schedule the task to run every 5 minutes (300,000 milliseconds)
-        timer.schedule(task, 0, 300000);
+    public void startSendData() {
+        TimerTask task = new HelloWorldTask(sensorVO);
+        timer.schedule(task, 0L, (long) (minute*60000));
     }
 
-    public void stopPrinting() {
+    public void stopSendData() {
         timer.cancel();
     }
 }
